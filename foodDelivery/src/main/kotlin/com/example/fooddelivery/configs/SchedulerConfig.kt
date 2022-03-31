@@ -1,4 +1,4 @@
-package com.example.fooddelivery.config
+package com.example.fooddelivery.configs
 
 import lombok.SneakyThrows
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
