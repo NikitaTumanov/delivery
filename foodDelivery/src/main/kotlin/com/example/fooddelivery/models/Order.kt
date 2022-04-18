@@ -1,12 +1,11 @@
 package com.example.fooddelivery.models
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import lombok.Data
 import lombok.Getter
 import lombok.Setter
 import javax.persistence.*
 
-@Getter
-@Setter
 
 @Entity
 @Data
@@ -14,8 +13,17 @@ import javax.persistence.*
 data class Order(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var id: Long? = null,
-    private var userId: Long? = null,
-    private var productId: Long? = null,
-    private var volume: Int? = null
+    var id: Long? = null,
+    //var userId: Long? = null,
+    var productIds: Long? = null,
+    var volume: Int? = null,
+    var address: String? = null,
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    var user: User,
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "order")
+    private var product: List<Product>
 )

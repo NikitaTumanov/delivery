@@ -14,8 +14,12 @@ import javax.persistence.*
 data class ClientInfo(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var id: Long? = null,
-    private var userId: Long? = null,
-    private var address: Int? = null,
-    private var age: String? = null
+    var id: Long? = null,
+    //var userId: Long? = null,
+    var address: String? = null,
+    var age: Int? = null,
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    var user: User
 )

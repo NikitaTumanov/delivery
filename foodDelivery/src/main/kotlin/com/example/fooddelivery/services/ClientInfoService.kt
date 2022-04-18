@@ -1,8 +1,7 @@
-package com.example.fooddelivery.service
+package com.example.fooddelivery.services
 
-import com.example.fooddelivery.models.Category
 import com.example.fooddelivery.models.ClientInfo
-import com.example.fooddelivery.repository.ClientInfoRepository
+import com.example.fooddelivery.repositories.ClientInfoRepository
 import lombok.RequiredArgsConstructor
 import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.annotation.Autowired

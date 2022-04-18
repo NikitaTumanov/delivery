@@ -14,7 +14,10 @@ import javax.persistence.*
 data class Category(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var id: Long? = null,
-    private var name: String? = null,
-    private var restricted: Boolean? = null
+    var id: Long? = null,
+    var name: String? = null,
+    var restricted: Boolean? = null,
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "category")
+    var products: List<Product>
 )

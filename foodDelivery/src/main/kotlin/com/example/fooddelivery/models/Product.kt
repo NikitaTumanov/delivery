@@ -1,5 +1,6 @@
 package com.example.fooddelivery.models
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import lombok.Data
 import lombok.Getter
 import lombok.Setter
@@ -14,10 +15,15 @@ import javax.persistence.*
 data class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var id: Long? = null,
-    private var categoryId: Long? = null,
-    private var name: String? = null,
-    private var volume: Int? = null,
-    private var price: Int? = null,
-    private var defaultVolume: Int? = null
+    var id: Long? = null,
+    //var categoryId: Long? = null,
+    var name: String? = null,
+    var volume: Int? = null,
+    var price: Int? = null,
+    var defaultVolume: Int? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonIgnore
+    var category: Category
 )

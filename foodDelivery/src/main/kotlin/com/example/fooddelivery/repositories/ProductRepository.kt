@@ -1,4 +1,4 @@
-package com.example.fooddelivery.repository
+package com.example.fooddelivery.repositories
 
 import com.example.fooddelivery.models.Product
 import org.springframework.data.jpa.repository.JpaRepository
