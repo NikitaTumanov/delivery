@@ -9,7 +9,7 @@ class CourierController(
     @Autowired
     val categoryService: CategoryService,
     @Autowired
-    val clientInfoService: ClientInfoService,
+    val productItemService: ProductItemService,
     @Autowired
     val orderService: OrderService,
     @Autowired

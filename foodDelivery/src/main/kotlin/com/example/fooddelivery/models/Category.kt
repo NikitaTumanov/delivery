@@ -1,5 +1,6 @@
 package com.example.fooddelivery.models
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import lombok.Data
 import lombok.Getter
 import lombok.Setter
@@ -7,9 +8,7 @@ import javax.persistence.*
 
 @Getter
 @Setter
-
 @Entity
-@Data
 @Table(name = "categories")
 data class Category(
     @Id
@@ -19,5 +18,10 @@ data class Category(
     var restricted: Boolean? = null,
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "category")
-    var products: List<Product>
-)
+    @JsonIgnoreProperties("category")
+    var products: List<Product> = ArrayList()
+){
+    override fun toString(): String {
+        return "{id: ${id},name: ${name},restricted: ${restricted}";
+    }
+}

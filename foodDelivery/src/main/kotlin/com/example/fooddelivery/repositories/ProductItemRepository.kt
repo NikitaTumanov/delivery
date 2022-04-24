@@ -1,11 +1,11 @@
 package com.example.fooddelivery.repositories
 
-import com.example.fooddelivery.models.Order
+import com.example.fooddelivery.models.ProductItem
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface OrderRepository: JpaRepository<Order, Long> {
-    fun findById(id:Int): Order?
+interface ProductItemRepository: JpaRepository<ProductItem, Long> {
+    fun findById(id:Int): ProductItem?
     fun deleteById(id: Int)
 }

@@ -21,12 +21,10 @@ data class User(
     private var name: String,
     private var password: String,
     private var type: String? = null,
+    private var age: Int? = null,
     private var email: String,
     private var phoneNumber: String? = null,
     private var enabled: Boolean = false,
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "user")
-    var clientInfo: ClientInfo,
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "user")
     var orders: List<Order>

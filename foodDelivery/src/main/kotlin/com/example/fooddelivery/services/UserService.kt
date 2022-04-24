@@ -24,8 +24,10 @@ class UserService (
     fun readAll(): List<User> = userRepository.findAll()
     fun findById(id: Int) = userRepository.findById(id)
     fun findByName(name: String) = userRepository.findByName(name)
+    fun findByEmail(email: String) = userRepository.findByEmail(email)
     fun deleteById(id: Int) = userRepository.deleteById(id)
     fun deleteByName(name: String) = userRepository.deleteByName(name)
+    fun deleteByEmail(email: String) = userRepository.deleteByEmail(email)
     override fun loadUserByUsername(username: String?): UserDetails {
         val optionalUser: User? = userRepository.findByName(username!!);
         if (optionalUser != null){

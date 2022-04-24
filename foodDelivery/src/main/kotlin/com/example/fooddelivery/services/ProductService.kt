@@ -19,9 +19,7 @@ class ProductService (
     fun addProduct(product: Product) = productRepository.save(product)
     fun readAll(): List<Product> = productRepository.findAll()
     fun findById(id: Int) = productRepository.findById(id)
-    fun findAllByCategoryId(categoryId: Int) = productRepository.findAllByCategoryId(categoryId)
     fun findByName(name: String) = productRepository.findByName(name)
     fun deleteById(id: Int) = productRepository.deleteById(id)
-    fun deleteByCategoryId(categoryId: Int) = productRepository.deleteByCategoryId(categoryId)
     fun deleteByName(name: String) = productRepository.deleteByName(name)
 }
