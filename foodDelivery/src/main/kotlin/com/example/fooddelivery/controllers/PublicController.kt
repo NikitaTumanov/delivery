@@ -1,10 +1,15 @@
 package com.example.fooddelivery.controllers
 
+import com.example.fooddelivery.models.AuthInput
 import com.example.fooddelivery.models.Category
 import com.example.fooddelivery.models.Product
+import com.example.fooddelivery.models.User
 import com.example.fooddelivery.services.*
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -29,5 +34,13 @@ class PublicController(
     @GetMapping(value = ["/public/categories"])
     fun getCategories(): List<Category> {
         return categoryService.readAll()
+    }
+    @PostMapping("/public/registration")
+    fun login(@RequestBody user: User): User {
+        return userService.addUser(user)
+    }
+    @PostMapping("/public/login")
+    fun auth(@RequestBody authInput: AuthInput): ResponseEntity<String> {
+        return userService.login(authInput)
     }
 }

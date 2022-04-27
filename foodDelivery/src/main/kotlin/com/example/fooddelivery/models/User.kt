@@ -18,21 +18,24 @@ data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private var id: Long? = null,
-    private var name: String,
-    private var password: String,
-    private var type: String? = null,
+    private var name: String = "",
+    private var password: String = "",
     private var age: Int? = null,
-    private var email: String,
+    private var email: String = "",
     private var phoneNumber: String? = null,
-    private var enabled: Boolean = false,
+    private var enabled: Boolean = true,
+    var role: Role? = Role.ROLE_CLIENT,
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "user")
-    var orders: List<Order>
+    var orders: List<Order>? = ArrayList()
 
 ) :UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority?>? {
-        val simpleGrantedAuthority = SimpleGrantedAuthority("ROLE_USER")
-        return Collections.singletonList(simpleGrantedAuthority)
+        if(role!=null) {
+            val simpleGrantedAuthority = SimpleGrantedAuthority(role?.name)
+            return Collections.singletonList(simpleGrantedAuthority)
+        }
+        return null
     }
     fun setPassword(password: String){
         this.password = password

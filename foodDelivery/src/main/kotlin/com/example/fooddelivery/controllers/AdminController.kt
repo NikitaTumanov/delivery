@@ -3,6 +3,7 @@ package com.example.fooddelivery.controllers
 import com.example.fooddelivery.services.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.GetMapping
 
 @RestController
 class AdminController(
@@ -17,5 +18,8 @@ class AdminController(
     @Autowired
     val userService: UserService
 ) {
-
+    @GetMapping(value = ["/admin/hello"])
+    fun getHelloADMIN(): String {
+        return "Hi! ADMIN"
+    }
 }
