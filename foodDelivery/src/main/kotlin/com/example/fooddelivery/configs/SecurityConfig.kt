@@ -16,6 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import java.util.*
 
 
@@ -25,7 +27,7 @@ class SecurityConfig(
     private var userService: UserService,
     @Autowired
     private val jwtFilter: JwtFilter
-) : WebSecurityConfigurerAdapter() {
+) : WebSecurityConfigurerAdapter(), WebMvcConfigurer {
     @Autowired
     fun setUserDetailsService( userService: UserService?) {
         this.userService = userService!!
@@ -74,5 +76,12 @@ class SecurityConfig(
             .anyRequest().authenticated()
             .and().logout().disable()
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java);
+    }
+
+    override fun addCorsMappings(registry: CorsRegistry) {
+        registry.addMapping("/**")
+            .allowedOrigins("http://localhost:3000")
+            .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH")
+            .allowCredentials(true)
     }
 }
