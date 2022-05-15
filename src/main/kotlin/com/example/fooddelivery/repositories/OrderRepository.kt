@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface OrderRepository: JpaRepository<Order, Long> {
-    fun findById(id:Int): Order?
-    fun deleteById(id: Int)
 }

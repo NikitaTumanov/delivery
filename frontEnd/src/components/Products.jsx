@@ -13,13 +13,13 @@ function Products(){
         getCategories();
     }, []);
     async function getProducts() {
-        const response = await axios.get('/public/products');
+        const response = await axios.get('http://localhost:8080/public/products');
         const jsonData = await response.data;
         console.log({jsonData})
         setProducts(jsonData)
     }
     async function getCategories() {
-        const response = await axios.get('/public/categories');
+        const response = await axios.get('http://localhost:8080/public/categories');
         const jsonData = await response.data;
         console.log({jsonData})
         setCategories(jsonData)

@@ -19,12 +19,11 @@ class OrderService (
 ){
     fun addOrder(order: Order) = orderRepository.save(order)
     fun readAll(): List<Order> = orderRepository.findAll()
-    fun findById(id: Int) = orderRepository.findById(id)
-    fun deleteById(id: Int) = orderRepository.deleteById(id)
+    fun findById(id: Long) = orderRepository.findById(id)
+    fun deleteById(id: Long) = orderRepository.deleteById(id)
     fun updateStatus(id: Long, status: String){
-        /*orderService.findById(id)?.status = "processing"
-        val user = findByEmail(email)
-        user?.role = role
-        userRepository.save(user!!)*/
+        val order = findById(id)
+        order?.status = status
+        orderRepository.save(order!!)
     }
 }
